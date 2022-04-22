@@ -16,12 +16,13 @@
         <div
           *ngFor="let list of lists"
           class="mx-3 overflow-scroll content__body__list"
+          id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"
         >
           <h4>
             {{ list.name }}
           </h4>
 
-          <div *ngFor="let card of list.cards">
+          <div *ngFor="let card of list.cards" draggable="true" ondragstart="drag(event)" id="drag1">
             <div
               class="content__body__card"
               draggable="true"
@@ -87,14 +88,14 @@
       </div>
       <div class="modal-body">
         <span class="mb-1">Title</span>
-        <input type="text" class="form-control" [(ngModel)]="this.newList" />
+        <input type="text" class="form-control" id="newList" [(ngModel)]="this.newList" />
         <small *ngIf="!this.newList">This is a required field</small>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary" (click)="newCol()">
+        <button type="button" class="btn btn-primary" (click)="newCol($event)">
           Submit
         </button>
       </div>
@@ -143,12 +144,12 @@
           </label>
           <label for="title">
             img
-            <input type="text" class="form-control" />
+            <input type="file" class="form-control" />
           </label>
           <label for="title">
             date
             <input
-              type="text"
+              type="date"
               class="form-control"
               [(ngModel)]="this.date"
               [ngModelOptions]="{ standalone: true }"
@@ -176,3 +177,5 @@
     </div>
   </div>
 </div>
+
+

@@ -1,8 +1,8 @@
 export class Card {
-    id?:string;
+    id?:Number;
     img?:string;
     title?:string;
     desc?:string;
     date?:string;
-    users?:string[]
+    users?:any[]
 }

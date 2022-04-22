@@ -7,7 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BoardComponent } from './components/board/board.component';
 import { FormsModule } from '@angular/forms';
-import { CardComponent } from './components/card/card.component'
+import { CardComponent } from './components/card/card.component';
 @NgModule({
   declarations: [
     AppComponent,

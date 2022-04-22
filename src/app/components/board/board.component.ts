@@ -1,6 +1,7 @@
 import { Lists } from './../../models/lists';
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -22,11 +23,12 @@ export class BoardComponent implements OnInit {
       name: 'Tasks',
       cards: [
         {
+          id: 1,
           img: '../../../assets/usr.png',
           title: 'test',
           desc: 'test',
           date: '22/04/2022',
-          users: ['test',"test2"],
+          users: ['test', 'test2'],
         },
       ],
     },
@@ -36,7 +38,10 @@ export class BoardComponent implements OnInit {
     },
   ];
 
-  newCol() {
+  newCol($event: Event) {
+    if (!this.newList) {
+      return;
+    }
     const col = new Lists(this.newList, []);
     this.lists.push(col);
   }
@@ -44,12 +49,34 @@ export class BoardComponent implements OnInit {
     const current = new Date();
     const task = new Card();
     const logedUser = 'Ahmed';
+    let users = []
+    let id: any = this.lists.find((x) => x.name === 'Tasks')?.cards.length;
+    task.id = id++ | 1;
     task.img = '../../../assets/usr.png';
     task.title = this.title;
     task.desc = this.desc;
-    task.date = current.toLocaleDateString();
-    task.users = this.users;
+    task.date = this.date || current.toLocaleDateString();
+    users.push(this.users)
+    
+    task.users = [logedUser,...users];
     this.lists.find((x) => x.name === 'Tasks')?.cards.push(task);
-    task.users.push('logedUser');
+    console.log(this.users);
+    
+    // task.users?.push(logedUser);
+    console.log(this.lists.find((x) => x.name === 'Tasks')?.cards);
+  }
+
+  allowDrop(ev: any) {
+    ev.preventDefault();
+  }
+
+  drag(ev: any) {
+    ev.dataTransfer.setData('text', ev.target.id);
+  }
+
+  drop(ev: any) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData('text');
+    ev.target.appendChild(document.getElementById(data));
   }
 }
