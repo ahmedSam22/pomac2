@@ -1,0 +1,57 @@
+.sideBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+
+.sideBar ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .sideBar ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.sideBar ul li {
+  width: 100%;
+  padding: 30px;
+  padding-right: 0;
+}
+
+.sideBar ul li i {
+  font-size: 2em;
+  color: #6a7ad9;
+}
+
+@media screen and (max-width: 767px) {
+  .sideBar ul {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .sideBar ul span {
+    padding-top: 0;
+  }
+}
+
+.active-link {
+  background-color: #eceff8;
+  width: 100%;
+  border-right: 4px solid #9ba3db;
+}
+/*# sourceMappingURL=sidebar.component.css.map */

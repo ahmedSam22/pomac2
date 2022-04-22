@@ -1,0 +1,47 @@
+.content
+    background: #eceff8
+    padding: 10px
+    height: 100vh
+    width: max-content
+    display: flex
+    overflow-x: scroll
+    &>div
+        width: fit-content
+        height: fit-content
+    button
+        background-color: #6a7ad9
+        height: fit-content
+        color: white
+        &:nth-child(3)
+            background: #d0d5f2
+            border: none
+            color: #444
+    &__body
+        flex-wrap: nowrap
+        div
+            min-width: 30%
+            max-height: 100vh
+            background: white
+            padding: 10px
+            border: none
+            display: flex
+            justify-content: center
+            flex-direction: column
+            text-align: center
+            .content__body__card
+                border-bottom: 1px solid gray
+            
+            &:last-child
+                height: min-content
+                button
+                    background: #c6c6c6
+                    color: white
+                    border: none
+            @media screen and ( max-width: 767px )
+                min-width: 100%
+                img
+                    width: 56%
+
+        &__list
+            
+

@@ -1,0 +1,12 @@
+<p>card works!</p>
+<div class="card" draggable="true" style="width: 18rem;">
+    <img [src]="card.title" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{card.title}}</h5>
+      <p class="card-text">{{card.desc}}</p>
+      <div class="d-flex justify-content-between">
+          <span> {{card.date}} </span>
+          <span> {{card.users}} </span>
+      </div>
+    </div>
+  </div>

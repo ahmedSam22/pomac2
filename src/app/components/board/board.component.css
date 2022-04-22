@@ -1,0 +1,85 @@
+.content {
+  background: #eceff8;
+  padding: 10px;
+  height: 100vh;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.content > div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.content button {
+  background-color: #6a7ad9;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: white;
+}
+
+.content button:nth-child(3) {
+  background: #d0d5f2;
+  border: none;
+  color: #444;
+}
+
+.content__body {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.content__body div {
+  min-width: 30%;
+  max-height: 100vh;
+  background: white;
+  padding: 10px;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.content__body div .content__body__card {
+  border-bottom: 1px solid gray;
+}
+
+.content__body div:last-child {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+
+.content__body div:last-child button {
+  background: #c6c6c6;
+  color: white;
+  border: none;
+}
+
+@media screen and (max-width: 767px) {
+  .content__body div {
+    min-width: 100%;
+  }
+  .content__body div img {
+    width: 56%;
+  }
+}
+/*# sourceMappingURL=board.component.css.map */

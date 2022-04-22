@@ -1,0 +1,54 @@
+.user--details {
+  text-align: right;
+}
+
+.user--details h6 {
+  font-size: .8rem;
+  margin: 0;
+}
+
+.user--img {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+}
+
+.user--img img {
+  width: 100%;
+}
+
+input {
+  width: 25%;
+}
+
+@media screen and (max-width: 767px) {
+  input {
+    width: 75%;
+  }
+}
+
+.navbar {
+  padding: 0;
+}
+
+.navbar__header {
+  background: #6a7ad9;
+  padding: 20px;
+  margin-right: 10px;
+  color: white;
+}
+
+.navbar__header h6 {
+  font-size: 1rem;
+}
+
+.navbar__header small {
+  font-size: 6px;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    padding: 15px;
+  }
+}
+/*# sourceMappingURL=navbar.component.css.map */
