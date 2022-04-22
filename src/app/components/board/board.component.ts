@@ -1,6 +1,7 @@
 import { Lists } from './../../models/lists';
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
@@ -17,7 +18,8 @@ export class BoardComponent implements OnInit {
   date: string = '';
   users: [] = [];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
   lists: Lists[] = [
     {
       name: 'Tasks',
@@ -66,17 +68,24 @@ export class BoardComponent implements OnInit {
     console.log(this.lists.find((x) => x.name === 'Tasks')?.cards);
   }
 
-  allowDrop(ev: any) {
-    ev.preventDefault();
-  }
+getList($event:any){
 
-  drag(ev: any) {
-    ev.dataTransfer.setData('text', ev.target.id);
-  }
+  
+  return this.lists.find((x) => x.name === $event?.name)?.cards
+}
 
-  drop(ev: any) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData('text');
-    ev.target.appendChild(document.getElementById(data));
+
+
+  drop(event: CdkDragDrop<any[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }

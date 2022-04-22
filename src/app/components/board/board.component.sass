@@ -18,19 +18,24 @@
             color: #444
     &__body
         flex-wrap: nowrap
+        align-items: baseline
         div
             min-width: 30%
             max-height: 100vh
+            height: fit-content
             background: white
             padding: 10px
             border: none
             display: flex
-            justify-content: center
             flex-direction: column
-            text-align: center
-            .content__body__card
+            .content_body_card
                 border-bottom: 1px solid gray
-            
+                @media screen and ( max-width: 767px )
+                width: fit-content
+                img
+                    width: 50%
+                    height: 70%
+                    object-fit: cover
             &:last-child
                 height: min-content
                 button
@@ -40,8 +45,10 @@
             @media screen and ( max-width: 767px )
                 min-width: 100%
                 img
-                    width: 56%
+                    width: 50%
+                    height: 70%
+                    object-fit: cover
 
         &__list
-            
-
+            h4
+                color: #6a7ad9

@@ -8,6 +8,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BoardComponent } from './components/board/board.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './components/card/card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +24,9 @@ import { CardComponent } from './components/card/card.component';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    FormsModule  ],
+    FormsModule,
+    BrowserAnimationsModule ,
+    DragDropModule ],
   providers: [],
   bootstrap: [AppComponent]
 })
