@@ -8,6 +8,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.sass'],
 })
+
 export class BoardComponent implements OnInit {
   constructor() {}
   newList: string = '';
@@ -18,8 +19,6 @@ export class BoardComponent implements OnInit {
   date: string = '';
   users: [] = [];
 
-  ngOnInit(): void {
-  }
   lists: Lists[] = [
     {
       name: 'Tasks',
@@ -40,12 +39,18 @@ export class BoardComponent implements OnInit {
     },
   ];
 
+  ngOnInit(): void {
+  }
+
   newCol($event: Event) {
     if (!this.newList) {
       return;
     }
     const col = new Lists(this.newList, []);
     this.lists.push(col);
+    this.newList = '';
+    let closeNewColumnModal = document.getElementById("closeNewColumnModal");
+    if(closeNewColumnModal) closeNewColumnModal.click()
   }
   newTask() {
     const current = new Date();
@@ -66,17 +71,15 @@ export class BoardComponent implements OnInit {
     
     // task.users?.push(logedUser);
     console.log(this.lists.find((x) => x.name === 'Tasks')?.cards);
+    let closeNewTaskModal = document.getElementById("closeNewTaskModal");
+    if(closeNewTaskModal) closeNewTaskModal.click()
   }
 
-getList($event:any){
+  getList($event:any){    
+    return this.lists.find((x) => x.name === $event?.name)?.cards
+  }
 
-  
-  return this.lists.find((x) => x.name === $event?.name)?.cards
-}
-
-
-
-  drop(event: CdkDragDrop<any[]>) {
+  drop(event:any) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

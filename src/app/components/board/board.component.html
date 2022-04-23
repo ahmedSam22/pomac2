@@ -1,51 +1,51 @@
-<div class="content w-100">
-  <div class="container-fluid m-0 w-100">
-    <div class="row">
-      <div class="d-flex justify-content-between col-12 w-100 p-2 flex-wrap">
-        <h3>Pomac Front End Technical Task</h3>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal2"
-        >
-          + New Task
-        </button>
-      </div>
-      <div class="content__body d-flex nowrap">
-        <div
-          *ngFor="let list of lists"
-          class="mx-3 overflow-scroll example-list content__body__list m-2"
-          cdkDropList
-          [cdkDropListData]="getList(this)"
-        >
-          <h4>
-            {{ list.name }}
-          </h4>
+<div class="content">
+  <div class="board_wrapper">
+    <div class="d-flex justify-content-between w-100 flex-wrap mt-2 mb-2">
+      <h4 class="page-title">Pomac Front End Technical Task</h4>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#newTaskModal"
+      >
+        + New Task
+      </button>
+    </div>
+    <div class="content__body d-flex nowrap" cdkDropListGroup>
+      <div
+        *ngFor="let list of lists"
+        class="content__body__list"
+        cdkDropList
+        [cdkDropListData]="list.cards"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <h4 class="list-title">
+          {{ list.name }}
+        </h4>
 
-          <div *ngFor="let card of list.cards" cdkDrag >
-            <div
-              class="content__body__card"
-              draggable="true"
-              style="width: 18rem"
-            >
-              <img
-                [src]="card.img"
-                class="card-img-top"
-                alt="..."
-                height="60%"
-              />
-              <div class="card-body p-0">
-                <div class="d-flex flex-row justify-content-between align-items-center w-100 px-0">
+        <div class="task-wrapper">
+          <div *ngFor="let card of list.cards" [cdkDragData]="card" cdkDrag> 
+            <div class="task-card">
+              <span class="img-cover">
+                <img
+                  [src]="card.img"
+                  class="card-img-top"
+                  alt="..."
+                />
+              </span>
+              <div class="card-body px-3 py-2">
+                <div class="d-flex flex-row justify-content-between align-items-center w-100 px-0 mt-2 mb-1">
                   <h5 class="card-title">{{ card.title }}</h5>
                   <i class="fa-solid fa-pen text-black-50"></i>
                 </div>
-                <p class="card-text text-muted">{{ card.desc }}</p>
+                <p class="card-text text-muted mb-2">{{ card.desc }}</p>
                 <div class="d-flex justify-content-between align-items-center flex-row px-0">
                   <small class="text-black-50"> {{ card.date }} </small>
-                  <div class="d-flex flex-row p-0">
-                    <span *ngFor="let user of card.users" class="text-light bg-primary rounded-circle mx-1 py-1 px-2">
-                      {{ user.slice(0, 2).toUpperCase() }}
+                  <div class="d-flex flex-row p-0 mb-2">
+                    <span *ngFor="let user of card.users">
+                      <span *ngIf="user.length > 0" class="card-user-avatar text-light bg-primary rounded-circle">
+                        {{ user.slice(0, 2).toUpperCase() }}
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -53,18 +53,18 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="content__body__list">
-          <button
-            class="btn"
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            + New Column
-          </button>
-        </div>
+      <div class="content__body__list p-0">
+        <button
+          class="btn"
+          type="button"
+          class="btn add-column-button"
+          data-bs-toggle="modal"
+          data-bs-target="#newColumnModal"
+        >
+          + New Column
+        </button>
       </div>
     </div>
   </div>
@@ -73,15 +73,14 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="exampleModal"
+  id="newColumnModal"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Column</h5>
+        <h5 class="modal-title">New Column</h5>
         <button
           type="button"
           class="btn-close"
@@ -90,12 +89,12 @@
         ></button>
       </div>
       <div class="modal-body">
-        <span class="mb-1">Title</span>
-        <input type="text" class="form-control w-100" id="newList" [(ngModel)]="this.newList" />
+        <label id="newList">Column Title</label>
+        <input type="text" class="form-control w-100 mb-1" id="newList" [(ngModel)]="this.newList" />
         <small *ngIf="!this.newList">This is a required field</small>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <button id="closeNewColumnModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
         <button type="button" class="btn btn-primary" (click)="newCol($event)">
@@ -108,15 +107,14 @@
 <!-- Modal -->
 <div
   class="modal fade"
-  id="exampleModal2"
+  id="newTaskModal"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel2"
   aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+        <h5 class="modal-title">New Task</h5>
         <button
           type="button"
           class="btn-close"
@@ -126,52 +124,62 @@
       </div>
       <div class="modal-body">
         <form action="">
-          <label for="title">
-            Title
-            <input
-              type="text"
-              class="form-control w-100"
-              [(ngModel)]="this.title"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </label>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <label for="taskTitle">
+                Title
+              </label>
+              <input
+                id="taskTitle"
+                type="text"
+                class="form-control"
+                [(ngModel)]="this.title"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+            <div class="col-md-12 mb-2">
+              <label for="description">
+                Description
+              </label>
+              <textarea
+                id="description"
+                type="text"
+                class="form-control"
+                [(ngModel)]="this.desc"
+                [ngModelOptions]="{ standalone: true }">
+              </textarea>
+            </div>
 
-          <label for="title">
-            description
-            <input
-              type="text"
-              class="form-control w-100"
-              [(ngModel)]="this.desc"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </label>
-          <label for="title">
-            img
-            <input type="file" class="form-control w-100" />
-          </label>
-            <label for="users">
-            users
-            <input
-              type="text"
-              class="form-control w-100"
-              [(ngModel)]="this.users"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </label>
-          <label for="date">
-            date
-            <input
-              type="date"
-              class="form-control w-100"
-              [(ngModel)]="this.date"
-              [ngModelOptions]="{ standalone: true }"
-            />
-          </label>
-        
+            <div class="col-md-12 mb-2">
+              <label for="img">Cover</label>
+              <input id="img" type="file" class="form-control w-100" />
+            </div>
+            <div class="col-md-12 mb-2">
+              <label for="user">Assigned user</label>
+              <input
+                id="user"
+                type="text"
+                class="form-control w-100"
+                [(ngModel)]="this.users"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+            <div class="col-md-12 mb-2">
+              <label for="date">Due date</label>
+              <input
+                id="date"
+                type="date"
+                class="form-control w-100"
+                [(ngModel)]="this.date"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+
+          </div>        
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <button id="closeNewTaskModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
         <button type="button" class="btn btn-primary" (click)="newTask()">
@@ -181,5 +189,4 @@
     </div>
   </div>
 </div>
-
 

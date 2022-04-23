@@ -113,6 +113,14 @@
               "node_modules/bootstrap/dist/js/bootstrap.js"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/pomac2",
+            "netlifyToken": "xUK48xVV0xRfxiN4EMUo8ECeOSRF30M7ozo7rkLoQ0U",
+            "siteId": "abd7cd60-d8ff-4c3b-aba4-56899b9c628d"
+          }
         }
       }
     }

@@ -1,54 +1,83 @@
 .content
     background: #eceff8
-    padding: 10px
-    height: 100vh
-    width: max-content
-    display: flex
-    overflow-x: scroll
-    &>div
-        width: fit-content
-        height: fit-content
-    button
-        background-color: #6a7ad9
-        height: fit-content
-        color: white
-        &:nth-child(3)
-            background: #d0d5f2
-            border: none
-            color: #444
+    padding: 15px 38px 10px
+    height: calc(100vh - 65px)
+    // overflow-y: auto
+    overflow: hidden
+    width: 100%
+    @media screen and (max-width: 767px)
+        padding: 15px 20px 10px
+
+    .board_wrapper
+        width: 100%
+        display: flex
+        flex-direction: column
+        height: 100%
+
+    .page-title 
+        font-size: 20px
+        font-weight: 600
+        margin-bottom: 7px
+        margin-top: 5px
+
     &__body
         flex-wrap: nowrap
-        align-items: baseline
-        div
-            min-width: 30%
-            max-height: 100vh
-            height: fit-content
+        height: 100%
+        overflow-y: hidden
+        padding-bottom: 20px
+        > div
+            width: 20%
+            min-width: 300px
             background: white
-            padding: 10px
-            border: none
-            display: flex
-            flex-direction: column
-            .content_body_card
-                border-bottom: 1px solid gray
-                @media screen and ( max-width: 767px )
-                width: fit-content
-                img
-                    width: 50%
-                    height: 70%
-                    object-fit: cover
-            &:last-child
-                height: min-content
-                button
-                    background: #c6c6c6
-                    color: white
-                    border: none
-            @media screen and ( max-width: 767px )
-                min-width: 100%
-                img
-                    width: 50%
-                    height: 70%
-                    object-fit: cover
+            padding: 20px
+            margin-right: 17px
+            border: 1px solid #ddd
+            border-radius: 10px
+            overflow: auto
+            max-height: 100%
+            height: fit-content
+            @media screen and (max-width: 767px)
+                min-width: 250px
 
-        &__list
-            h4
-                color: #6a7ad9
+        .list-title
+            color: #6a7ad9
+            font-size: 16px
+            margin-bottom: 16px
+            font-weight: 600
+
+.task-card
+    border: 1px solid #ddd
+    border-radius: 10px
+    margin-bottom: 20px
+    background-color: #fff
+
+    .card-title
+        font-size: 18px
+        font-weight: 600
+        margin-bottom: 0
+    .card-user-avatar
+        width: 25px
+        height: 25px
+        font-size: 12px
+        text-align: center
+        margin-left: 4px
+        line-height: 24px
+        display: inline-block
+    .img-cover 
+        display: block
+        height: 100px
+        display: flex
+        align-items: center
+        overflow: hidden
+        border-radius: 10px 10px 00px 0
+        img
+            width: 100%
+            height: auto
+
+.add-column-button 
+    width: 100%
+    height: 55px
+    font-size: 15px
+    color: #6a6a79
+    background: #d0d5f2
+    font-weight: 600
